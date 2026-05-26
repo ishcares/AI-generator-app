@@ -19,8 +19,24 @@ const PORT = process.env.PORT || 4000;
 // Security & Parsing Middleware
 // ─────────────────────────────────────────────
 app.use(helmet());
+
+// Dynamic CORS configuration (Self-correcting for local/Vercel environments)
 app.use(cors({
-  origin: process.env.FRONTEND_URL || 'http://localhost:5173',
+  origin: (origin, callback) => {
+    // Allow non-browser requests (like curl, postman, server-to-server)
+    if (!origin) return callback(null, true);
+    
+    // Whitelist localhost and Vercel domains
+    const isVercel = origin.endsWith('.vercel.app');
+    const isLocalhost = origin.startsWith('http://localhost') || origin.startsWith('http://127.0.0.1');
+    const isCustomFrontend = process.env.FRONTEND_URL && origin === process.env.FRONTEND_URL.replace(/\/$/, '');
+    
+    if (isVercel || isLocalhost || isCustomFrontend) {
+      callback(null, true);
+    } else {
+      callback(new Error(`Origin ${origin} not allowed by CORS`));
+    }
+  },
   credentials: true,
 }));
 app.use(morgan(process.env.NODE_ENV === 'production' ? 'combined' : 'dev'));
