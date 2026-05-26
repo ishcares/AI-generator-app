@@ -1,6 +1,16 @@
-# AppForge AI — JSON-Driven Application Generator
+# AppGen — JSON-Powered Application Builder
 
 > Transform a JSON configuration file into a **fully working application** with forms, tables, dashboards, REST APIs, JWT auth, and CSV import — instantly.
+
+---
+
+## ☁️ Live Cloud Deployment (Production)
+
+The production stack is fully live and accessible at the following endpoints:
+
+* **⚡ Frontend App (Vercel)**: [https://ai-generator-app-chi.vercel.app](https://ai-generator-app-chi.vercel.app)
+* **⚙️ Backend API (Render)**: [https://ai-generator-app.onrender.com](https://ai-generator-app.onrender.com)
+* **🗄️ Database (Supabase)**: Live in **Singapore (`ap-southeast-1`)** on standard direct session pooling (Port `5432`).
 
 ---
 
