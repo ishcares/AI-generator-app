@@ -1,0 +1,39 @@
+# ─── System / Diagnostic Files ───
+.DS_Store
+Thumbs.db
+*.log
+.gemini/
+.env
+
+# ─── Package Managers ───
+node_modules/
+.npm/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# ─── Environment Secrets (Crucial Security) ───
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+backend/.env
+frontend/.env
+
+# ─── Build / Output Directories ───
+dist/
+dist-ssr/
+*.local
+out/
+build/
+.next/
+
+# ─── IDE Configs ───
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
