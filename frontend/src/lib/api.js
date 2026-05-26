@@ -1,13 +1,21 @@
 import axios from 'axios';
 
+// Get base URL and ensure it always ends with a trailing slash for subpath resolution
+const rawBaseUrl = import.meta.env.VITE_API_URL || 'http://localhost:4000/api';
+const normalizedBaseUrl = rawBaseUrl.endsWith('/') ? rawBaseUrl : `${rawBaseUrl}/`;
+
 const api = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || 'http://localhost:4000/api',
+  baseURL: normalizedBaseUrl,
   timeout: 15000,
   headers: { 'Content-Type': 'application/json' },
 });
 
-// Attach JWT token to every request
+// Attach JWT token and normalize relative URLs (strip leading slashes to preserve subpath)
 api.interceptors.request.use((config) => {
+  if (config.url && config.url.startsWith('/')) {
+    config.url = config.url.substring(1);
+  }
+  
   const token = localStorage.getItem('auth_token');
   if (token) config.headers.Authorization = `Bearer ${token}`;
   return config;
