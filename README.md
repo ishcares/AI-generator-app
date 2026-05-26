@@ -265,8 +265,8 @@ This setup mounts your host directories into the containers, enabling backend **
    docker compose -f docker-compose.dev.yml up --build
    ```
 3. **Access application:**
-   - **Frontend:** [http://localhost:5173](http://localhost:5173) (with HMR)
-   - **Backend API:** [http://localhost:4000/api](http://localhost:4000/api)
+   - **Frontend:** [https://ai-generator-app-chi.vercel.app](https://ai-generator-app-chi.vercel.app (with HMR)
+   - **Backend API:**  [https://ai-generator-app.onrender.com](https://ai-generator-app.onrender.com)
    - **PostgreSQL Database:** Port `5432` on localhost (accessible via any DB explorer like DBeaver or TablePlus with credentials in `.env`)
 
 ---
