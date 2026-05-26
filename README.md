@@ -96,31 +96,41 @@ Navigate to **http://localhost:5173** and:
 
 ---
 
-## 🔑 Environment Variables
+## 🔑 Environment Variables & Configurations
 
 ### Backend `.env`
+
+Create a `.env` file in the `backend/` directory:
+
 ```env
 PORT=4000
 NODE_ENV=development
 
-# PostgreSQL
-DB_HOST=localhost
-DB_PORT=5432
-DB_NAME=ai_app_generator
-DB_USER=postgres
-DB_PASSWORD=your_password
-DB_POOL_MAX=20
+# --- Managed Supabase PostgreSQL (IPv4 Session Pooler) ---
+DATABASE_URL=postgresql://postgres.bbskfcsqpxulvctolyit:your_database_password@aws-1-ap-southeast-1.pooler.supabase.com:5432/postgres
 
-# JWT — generate with: node -e "console.log(require('crypto').randomBytes(64).toString('hex'))"
-JWT_SECRET=your_long_random_secret
+# --- Local Fallback Configurations (Optional) ---
+# DB_HOST=localhost
+# DB_PORT=5432
+# DB_NAME=ai_app_generator
+# DB_USER=postgres
+# DB_PASSWORD=your_local_password
+
+# --- Authentication Secrets ---
+# Generate with: node -e "console.log(require('crypto').randomBytes(64).toString('hex'))"
+JWT_SECRET=846eb7c8f478e27adda20c986b3e3ef174958c7bc4749655d2aa65a9bc510acb
 JWT_EXPIRES=7d
 
-FRONTEND_URL=http://localhost:5173
+# --- Authorized Frontend URL (CORS Whitelist) ---
+FRONTEND_URL=https://ai-generator-app-chi.vercel.app
 ```
 
 ### Frontend `.env`
+
+Create a `.env` file in the `frontend/` directory:
+
 ```env
-VITE_API_URL=http://localhost:4000/api
+VITE_API_URL=https://ai-generator-app.onrender.com/api
 ```
 
 ---
